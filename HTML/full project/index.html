@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Event Portal</title>
+  <style>
+    #welcomeBanner {
+      background-color: blue;
+      color: white;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .highlight {
+      background-color: yellow;
+      padding: 2px 5px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    img.event-image {
+      border: 3px solid #3498db;
+      max-width: 100%;
+      height: auto;
+    }
+    form {
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+    }
+    input, select, textarea {
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #videoStatus {
+      font-weight: bold;
+      color: green;
+    }
+    #characterCount {
+      color: #666;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+    <a href="help.html" target="_blank">Help</a>
+  </nav>
+
+  <div id="welcomeBanner">
+    Welcome to our Community Portal! <span style="color: red; font-weight: bold;">Special offer: First event free!</span>
+  </div>
+
+  <section id="home">
+    <h1>Community Event Portal</h1>
+    <p class="highlight">Join us for exciting local events!</p>
+  </section>
+
+  <section id="events">
+    <h2>Past Events Gallery</h2>
+    <table>
+      <tr>
+        <td>
+          <figure>
+            <img src="event1.jpeg" alt="Summer Festival" title="Summer Festival" class="event-image">
+            <figcaption>Annual Summer Festival</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure>
+            <img src="event2.jpeg" alt="Food Fair" title="Food Fair" class="event-image">
+            <figcaption>Local Food Fair</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure>
+            <img src="event3.jpeg" alt="Art Show" title="Art Show" class="event-image">
+            <figcaption>Community Art Show</figcaption>
+          </figure>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <figure>
+            <img src="event4.jpeg" alt="Music Night" title="Music Night" class="event-image">
+            <figcaption>Friday Music Night</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure>
+            <img src="event5.jpeg" alt="Sports Day" title="Sports Day" class="event-image">
+            <figcaption>Neighborhood Sports Day</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure>
+            <img src="event6.jpeg" alt="Book Club" title="Book Club" class="event-image">
+            <figcaption>Monthly Book Club</figcaption>
+          </figure>
+        </td>
+      </tr>
+    </table>
+
+    <h2>Event Registration</h2>
+    <form id="registrationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required autofocus placeholder="Your full name">
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      
+      <label for="eventDate">Event Date:</label>
+      <input type="date" id="eventDate" name="eventDate">
+      
+      <label for="eventType">Event Type:</label>
+      <select id="eventType" name="eventType" onchange="showEventFee()">
+        <option value="">Select an event</option>
+        <option value="festival">Festival ($10)</option>
+        <option value="workshop">Workshop ($15)</option>
+        <option value="concert">Concert ($20)</option>
+      </select>
+      
+      <output id="feeDisplay"></output>
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Any special requirements" onkeyup="countCharacters()"></textarea>
+      <div id="characterCount">0 characters</div>
+      
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" onblur="validatePhone()" placeholder="123-456-7890">
+      
+      <button type="button" onclick="submitForm()">Register</button>
+      <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+    </form>
+    
+    <div id="confirmation"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Event Feedback</h2>
+    <img src="event6.jpeg" alt="Feedback" class="event-image" ondblclick="enlargeImage(this)">
+    
+    <h2>Event Video</h2>
+    <video id="eventVideo" width="400" controls oncanplay="videoReady()">
+      <source src="event-promo.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <div id="videoStatus"></div>
+  </section>
+
+  <button onclick="findNearbyEvents()">Find Nearby Events</button>
+  <div id="locationResult"></div>
+
+  <footer>
+    <p>&copy; 2023 Community Event Portal</p>
+  </footer>
+
+  <script>
+    window.onbeforeunload = function() {
+      if (document.getElementById('name').value !== '') {
+        return 'You have unsaved form data. Are you sure you want to leave?';
+      }
+    };
+
+    function showEventFee() {
+      const eventType = document.getElementById('eventType').value;
+      const feeDisplay = document.getElementById('feeDisplay');
+      if (eventType === 'festival') {
+        feeDisplay.value = 'Fee: $10';
+      } else if (eventType === 'workshop') {
+        feeDisplay.value = 'Fee: $15';
+      } else if (eventType === 'concert') {
+        feeDisplay.value = 'Fee: $20';
+      } else {
+        feeDisplay.value = '';
+      }
+      localStorage.setItem('preferredEventType', eventType);
+    }
+
+    function submitForm() {
+      document.getElementById('confirmation').innerHTML = '<p class="highlight">Thank you for registering!</p>';
+    }
+
+    function validatePhone() {
+      const phone = document.getElementById('phone').value;
+      if (phone && !/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
+        alert('Please enter phone in format 123-456-7890');
+      }
+    }
+
+    function countCharacters() {
+      const message = document.getElementById('message').value;
+      document.getElementById('characterCount').innerText = message.length + ' characters';
+    }
+
+    function enlargeImage(img) {
+      img.style.width = (img.style.width === '100%') ? 'auto' : '100%';
+    }
+
+    function videoReady() {
+      document.getElementById('videoStatus').innerText = 'Video ready to play!';
+    }
+
+    function clearPreferences() {
+      localStorage.removeItem('preferredEventType');
+      sessionStorage.clear();
+      alert('Preferences cleared!');
+    }
+
+    function findNearbyEvents() {
+      if (navigator.geolocation) {
+        const options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+        };
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            document.getElementById('locationResult').innerHTML = 
+              `<p>Your location: ${lat.toFixed(4)}, ${lng.toFixed(4)}</p>
+               <p>Nearest event: Community Center (0.5 miles away)</p>`;
+          },
+          function(error) {
+            let message = 'Error getting location: ';
+            switch(error.code) {
+              case error.PERMISSION_DENIED:
+                message += 'User denied the request for Geolocation.';
+                break;
+              case error.POSITION_UNAVAILABLE:
+                message += 'Location information is unavailable.';
+                break;
+              case error.TIMEOUT:
+                message += 'The request to get user location timed out.';
+                break;
+              case error.UNKNOWN_ERROR:
+                message += 'An unknown error occurred.';
+                break;
+            }
+            document.getElementById('locationResult').innerText = message;
+          },
+          options
+        );
+      } else {
+        document.getElementById('locationResult').innerText = 'Geolocation is not supported by this browser.';
+      }
+    }
+
+    window.onload = function() {
+      const preferredEvent = localStorage.getItem('preferredEventType');
+      if (preferredEvent) {
+        document.getElementById('eventType').value = preferredEvent;
+        showEventFee();
+      }
+    };
+  </script>
+</body>
+</html>
