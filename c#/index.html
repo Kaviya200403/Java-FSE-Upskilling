@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Event Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Community Event Portal</h1>
+    <p class="highlight">Join events and stay engaged!</p>
+  </header>
+
+  <section>
+    <h2>Register for Event</h2>
+    <form id="eventForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <select id="eventSelect" required></select>
+      <button type="submit">Register</button>
+    </form>
+    <div id="confirmation"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Event Portal</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
