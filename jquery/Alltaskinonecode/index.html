@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Community Event Portal</title>
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script>window.jQuery || document.write('<script src="js/jquery-3.6.0.min.js"><\/script>');</script>
+  <script defer src="main.js"></script>
+  <style>
+    .box { width: 100px; height: 100px; background: lightgray; margin: 5px; display: inline-block; }
+    #colorBox { width: 100px; height: 100px; background-color: white; }
+  </style>
+</head>
+<body>
+  <h1>Original Heading</h1>
+  <p>First paragraph</p>
+  <p>Second paragraph (will hide)</p>
+  <button id="hideP">Hide Paragraph</button>
+
+  <p id="hello">Hello World!</p>
+
+  <div class="box">Box 1</div>
+  <div class="box">Box 2</div>
+  <div class="box">Box 3</div>
+  <br />
+  <button id="toggleBoxes">Toggle Boxes</button>
+  <button id="slideBoxes">Slide Effect</button>
+
+  <form id="taskForm">
+    <input type="text" id="taskInput" placeholder="Add task" />
+    <button type="submit">Add</button>
+  </form>
+  <ul id="taskList"></ul>
+  <button id="clearTasks">Remove All</button>
+
+  <br><br>
+  <button id="colorBtn">Change Color</button>
+  <div id="colorBox"></div>
+
+  <div id="hoverDiv">Hover over me</div>
+  <input type="text" id="keypressInput" placeholder="Press any key" />
+
+  <input type="text" id="search" placeholder="Search events..." />
+  <select id="categoryFilter">
+    <option value="All">All</option>
+    <option value="Music">Music</option>
+    <option value="Workshop">Workshop</option>
+  </select>
+
+  <div id="eventsContainer"></div>
+</body>
+</html>

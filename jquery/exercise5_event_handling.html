@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Interaction</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #colorBox {
+      width: 200px;
+      height: 200px;
+      background-color: white;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <button id="colorBtn">Change Color</button>
+  <div id="colorBox"></div>
+
+  <script>
+    $(document).ready(function() {
+      $("#colorBtn").click(function() {
+        $("#colorBox").css("background-color", "red");
+      });
+      $("#colorBox").dblclick(function() {
+        $(this).css("background-color", "white");
+      });
+    });
+  </script>
+</body>
+</html>

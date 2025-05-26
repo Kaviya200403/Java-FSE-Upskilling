@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selecting Elements</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Original Heading</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <button>Click Me</button>
+
+  <script>
+    $(document).ready(function() {
+      $("h1").text("Updated Heading");
+      $("button").click(function() {
+        $("p:eq(1)").hide();
+      });
+    });
+  </script>
+</body>
+</html>
