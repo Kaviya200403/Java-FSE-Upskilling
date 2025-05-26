@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadows and Rounded Corners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="mb-5">Shadows and Rounded Corners in Cards</h1>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Small Shadow</h5>
+                        <p class="card-text">This card has a small shadow using <code>.shadow-sm</code>.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card shadow rounded-pill">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Regular Shadow</h5>
+                        <p class="card-text">This card has regular shadow and rounded-pill corners.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg rounded-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Large Shadow</h5>
+                        <p class="card-text">This card has large shadow and more rounded corners.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-header bg-primary text-white rounded-top-4">
+                        <h4>Premium Card</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>This card combines shadow, no border, and custom rounded corners.</p>
+                        <p>The header has different rounded corners than the card itself.</p>
+                    </div>
+                    <div class="card-footer bg-light rounded-bottom-4">
+                        <button class="btn btn-primary">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-lg border-primary border-3 rounded-pill">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Special Offer</h3>
+                        <p class="card-text">50% OFF</p>
+                        <button class="btn btn-danger rounded-pill px-4">Claim Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

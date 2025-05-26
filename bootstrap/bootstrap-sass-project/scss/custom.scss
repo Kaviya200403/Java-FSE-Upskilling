@@ -1,0 +1,26 @@
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+.btn-custom {
+    @extend .btn;
+    background-color: $custom-color;
+    color: white;
+    
+    &:hover {
+        background-color: darken($custom-color, 10%);
+        color: white;
+    }
+}
+
+.custom-box {
+    background-color: white;
+    border: 1px solid $gray-300;
+    border-radius: 0.25rem;
+    box-shadow: $box-shadow-custom;
+    
+    &:hover {
+        transform: translateY(-2px);
+        transition: transform 0.2s ease-in-out;
+    }
+}
